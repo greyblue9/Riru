@@ -1,11 +1,13 @@
 name: Core
 
 on:
-  push:
-    branches:
-      - master
+  pull_request:
     paths-ignore:
       - '**/README.md'
+  push:
+    paths-ignore:
+      - '**/README.md'
+
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -21,41 +23,10 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Cache Gradle Dependencies
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-            !~/.gradle/caches/build-cache-*
-          key: gradle-deps-core-${{ hashFiles('**/build.gradle') }}
-          restore-keys: |
-            gradle-deps
-      - name: Cache Gradle Build
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.gradle/caches/build-cache-*
-          key: gradle-builds-core-${{ github.sha }}
-          restore-keys: |
-            gradle-builds
-      - name: Cache Ccache
-        uses: actions/cache@v2
-        with:
-          path: ~/.ccache
-          key: ccache-cache-${{ github.sha }}
-          restore-keys: ccache-cache-
-      - name: Install ccache
-        run: |
-          sudo apt-get install -y ccache
-          ccache -o max_size=2G
-          ccache -o hash_dir=false
       - name: Build with Gradle
         run: |
           mkdir -p ~/.gradle/wrapper
           mkdir -p ~/.gradle/caches
-          [ $(du -s ~/.gradle/wrapper | awk '{ print $1 }') -gt 250000 ] && rm -rf ~/.gradle/wrapper/* || true
-          find ~/.gradle/caches -exec touch -d "2 days ago" {} + || true
           echo 'org.gradle.caching=true' >> gradle.properties
           echo 'org.gradle.parallel=true' >> gradle.properties
           echo 'org.gradle.vfs.watch=true' >> gradle.properties

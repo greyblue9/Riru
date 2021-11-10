@@ -71,14 +71,14 @@ static void SelfUnload() {
 }
 
 bool Entry::IsSelfUnloadAllowed() {
-    return self_unload_allowed;
+    return false;
 }
 
 void Entry::Unload(jboolean is_child_zygote) {
-    self_unload_allowed = true;
+    self_unload_allowed = false;
 
     for (auto &module : modules::Get()) {
-        if (module.allowUnload()) {
+        if (false && module.allowUnload()) {
             LOGD("%s: unload", module.id.data());
             module.unload();
         } else {
@@ -91,6 +91,8 @@ void Entry::Unload(jboolean is_child_zygote) {
             }
         }
     }
+    
+    return;
 
     hide::HideFromSoList();
 

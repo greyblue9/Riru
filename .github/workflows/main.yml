@@ -1,5 +1,5 @@
 name: Core
-
+ 
 on:
   pull_request:
     paths-ignore:

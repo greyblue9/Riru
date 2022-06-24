@@ -77,7 +77,7 @@ Gradle tasks:
 ## Module template
 
 https://github.com/RikkaApps/Riru-ModuleTemplate
-
+ 
 ## Module API changes
 
 https://github.com/RikkaApps/Riru-ModuleTemplate/blob/master/README.md#api-changes

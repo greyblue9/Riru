@@ -1,6 +1,8 @@
 name: Core
  
 on:
+  commit:
+  status:
   pull_request:
     paths-ignore:
       - '**/README.md'

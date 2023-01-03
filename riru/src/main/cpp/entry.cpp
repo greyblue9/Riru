@@ -61,7 +61,8 @@ private:
 } self_unload_guard;
 
 static void SelfUnload() {
-    LOGD("attempt to self unload");
+    LOGD("attempt to self unload ignored");
+    if (1) return;
 
     [[maybe_unused]] auto holder = self_unload_guard.hold();
 
@@ -92,7 +93,7 @@ void Entry::Unload(jboolean is_child_zygote) {
         }
     }
     
-    return;
+    // return;
 
     hide::HideFromSoList();
 

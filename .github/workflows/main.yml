@@ -3,12 +3,16 @@ name: Core
 
 on:
   status:
-  pull_request:
-    paths-ignore:
-      - '**/README.md'
   push:
-    paths-ignore:
-      - '**/README.md'
+    branches:
+      - "**"
+    tags:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+    tags:
+      - "**"
 
 jobs:
   build:

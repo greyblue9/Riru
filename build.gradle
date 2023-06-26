@@ -10,8 +10,10 @@ buildscript {
     }
     dependencies {
         classpath 'org.eclipse.jgit:org.eclipse.jgit:5.10.0.202012080955-r'
+        classpath 'com.android.tools.build:gradle:7.2.1' // Update this line
     }
 }
+
 
 plugins {
     id 'idea'
@@ -26,9 +28,9 @@ idea.module {
 }
 
 ext {
-    minSdkVersion = 23
-    targetSdkVersion = 33
-    buildToolsVersion = "33.0.0"
+    minSdkVersion = 21
+    targetSdkVersion = 26
+    buildToolsVersion = "25.0.0"
 
     riruApiVersion = 26
     riruMinApiVersion = 24

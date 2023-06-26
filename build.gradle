@@ -30,7 +30,7 @@ idea.module {
 ext {
     minSdkVersion = 21
     targetSdkVersion = 26
-    buildToolsVersion = "25.0.0"
+    buildToolsVersion = "30.0.3"
 
     riruApiVersion = 26
     riruMinApiVersion = 24
